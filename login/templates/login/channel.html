@@ -1,0 +1,92 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/channel.css' %}" rel="stylesheet"/>
+    <title>板块设置</title>
+  </head>
+  <body>
+    <div class="container">
+            <div class="col">
+                <form class="form-channel" action="/channel/" method="post">
+				    {% csrf_token %}
+					<h3 class="text-center">请设置偏好的板块</h3>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="峰会"  name="check_box_list">
+						热门
+						</label>
+					</div>	
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="AI" name="check_box_list">
+						娱乐
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="技术" name="check_box_list">
+						时尚
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="百度" name="check_box_list">
+						游戏
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="互联网" name="check_box_list">
+						体育
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="金融" name="check_box_list">
+						历史
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="旅游" name="check_box_list">
+						军事
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="音乐" name="check_box_list">
+						教育
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="中国" name="check_box_list">
+						财经
+						</label>
+					</div>		
+					<div class="btn-func">
+					<a href="/prefer/" class="btn-return">
+					<button type="button" class="btn btn-primary" style="vertical-align:middle">上一步</button>
+					</a>  
+				    <button type="submit" class="btn btn-primary" style="vertical-align:middle">完成</button>
+					</div>
+			</form>
+            </div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

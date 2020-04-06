@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/help.css' %}" rel="stylesheet"/>
+    <title>帮助与反馈</title>
+</head>
+	<body>
+		<a></a>
+		<div class="container">
+			<div class="row">
+					<form class="feedback" id="feedback" action="/help" accept-charset="UTF-8" method="post">
+						<h3>帮助与反馈</h3>
+						<h6>如需帮助，请前往<a href='/faqs'>帮助中心</a>，或者<a href='#'>联系我们</a>。</h6>
+						<table>
+							<tbody>
+								<tr>
+									<td class="setting-title pull-left setting-input">意见反馈</td>
+									<td>
+									  <textarea placeholder="填写意见反馈" name="app_feedback[content]" id="app_feedback_content"></textarea>
+									</td>
+								</tr>
+							</tbody>
+							<tbody class="base">
+								<td class="setting-title pull-left setting-input">联系方式</td>
+								<td>
+								  <input placeholder="微信号 / 手机号 / QQ / 邮箱" type="text" name="app_feedback[contact]" id="app_feedback_contact" />
+								  <p>留下您的联系方式，方便工作人员与您取得联系。</p>
+								</td>
+							</tbody>
+						</table>
+						<input type="submit" name="commit" value="提交" class="btn btn-success" data-disable-with="提交" />
+					</form>
+			
+			</div>
+		
+		
+		
+		</div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

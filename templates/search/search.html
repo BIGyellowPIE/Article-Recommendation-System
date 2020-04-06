@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/index.css' %}" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/iconfont.css' %}">
+	<script src = "{% static 'login/javascript/change.js' %}"></script>
+    <title>首页</title>
+</head>
+<body>
+<div class="topnav">
+<div class="column side">
+</div>
+<div class="column middle">
+<form class="form-search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+{% csrf_token %}
+  <input type="text" name="q" placeholder="搜索.." class="input-medium search-query">
+  <button type="submit" class="btn btn-primary" style="vertical-align:middle">搜索</button>
+</form>
+</div>
+<ul style="list-style:none;">
+{% if not request.session.is_login %}
+<li><a href="/register/" class="register" style="float: right;">注册</a></li>
+<li><a href="/login/" class="login" style="float: right;">登录</a></li>
+{% else%}
+
+    <li class="userdown" style="position:absolute;right:40px;">
+  <a href="#" class="login" style="width:120px">{{ request.session.user_name }}</a>  
+    <ul class="dropdown-user" style="list-style:none;  padding-left:0px; left:0;">
+      <li><a href="#" class="btn btn-link">个人中心</a></li>
+      <li><a href="/prefer/" class="btn btn-link">设置</a></li>
+	  <li><a href="#" class="btn btn-link">帮助</a></li>
+	  <li><a href="/logout/" class="btn btn-link">退出登录</a></li>
+	</ul>
+	</li>
+</ul>
+{% endif %}
+</div>
+</br></br></br></br>
+<div class="row">
+
+<div class="col left">
+
+</div>
+<div class="col middle">
+<div class="news-box">
+<ul style="list-style-type:none;">
+</br>
+{% if query %}
+{% for result in page.object_list %}
+<li style=" border-bottom:1px #E0E0E0 solid; ">
+{% if result.object.piclink %}
+<a class="img-box" href={{result.object.link}}  target="_blank" style="float :right;0`width: 160px; height: 160px;display:flex;">
+<img src={{result.object.piclink}} style="width: 160px; height: auto;align-self:center;" referrerPolicy="no-referrer";/>
+</a>
+<div class="txt-box" style="margin: 0 200px 0 0px;">
+{% else %}
+<div class="txt-box">
+{% endif %}
+<h4><a href={{result.object.link}}  target="_blank" style="color:	#303030;">{{result.object.title}}</a></h4>
+<p style="color:#585858;">{{result.object.profile}}</p>
+<div class="author-name" ><a href={{result.object.authorlink}}  target="_blank" style="color:#C0C0C0;">{{result.object.author}}</a>
+</div>
+</br>
+</div>
+</li>
+</br>
+{% empty %}
+<p>换个搜索词试试吧！</p>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+</div>
+</div>
+<div class="col right">
+
+</div>
+
+
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

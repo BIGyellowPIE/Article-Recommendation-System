@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/prefer.css' %}" rel="stylesheet"/>
+    <title>社交媒体设置</title>
+  </head>
+  <body>
+    <div class="container">
+            <div class="col">
+                <form class="form-prefer" action="/prefer/" method="post">
+				    {% csrf_token %}
+					<h3 class="text-center">请设置偏好的社交媒体</h3>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="1"  name="check_box_list">
+						微博
+						</label>
+					</div>	
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="2" name="check_box_list">
+						贴吧
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="3" name="check_box_list">
+						知乎
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="4" name="check_box_list">
+						简书
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="5" name="check_box_list">
+						CSDN
+						</label>
+					</div>	
+						<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary">
+						<input type="checkbox" value="6" name="check_box_list">
+						微信
+						</label>
+					</div>	
+					<br><br>
+						<button type="submit" class="btn btn-primary float-right" style="vertical-align:middle">下一步</button>
+					</div>
+			</form>
+            </div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
