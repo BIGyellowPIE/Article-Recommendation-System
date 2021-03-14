@@ -1,0 +1,368 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="referrer" content="no-referrer">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/home.css' %}" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/iconfont.css' %}">
+	<script src="{% static 'login/laydate/laydate.js' %}"></script>
+    <title>个人中心</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+
+<script type="text/javascript">
+function selectword(evt){
+	var worddetail;
+	worddetail = document.getElementsByClassName("word-detail");
+    for (i = 0; i < worddetail.length; i++) {
+        worddetail[i].className = worddetail[i].className.replace(" active", "");
+    }
+    evt.currentTarget.className += " active";
+}
+
+function changeShape(evt, shapeid){
+	$(".shape_drop").attr("shapeid",shapeid);
+	$(".shape-show").remove();
+	var shape = evt.currentTarget.firstChild.cloneNode(true);
+	document.getElementsByClassName("shapewrap")[0].appendChild(shape);
+	$(".shapewrap").children('a').addClass("shape-show");
+}
+
+function pastNew(evt, cityName){
+    var i, timeMode, container;
+    timeMode = document.getElementsByClassName("cloud_time_mode");
+    container = document.getElementsByClassName("left-func");
+    for (i = 0; i <  container.length; i++) {
+        container[i].style.display = "none";
+    }
+    for (i = 0; i < timeMode.length; i++) {
+        timeMode[i].className = timeMode[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+	lay('#version').html('-v'+ laydate.v);
+
+	//执行一个laydate实例
+	laydate.render({
+	  elem: '#timeSelect' //指定元素
+	});
+}
+
+function openTab(evt, cityName) {
+    var i, tablinks, container;
+    tablinks = document.getElementsByClassName("tablinks");
+    container = document.getElementsByClassName(" list-container");
+    for (i = 0; i <  container.length; i++) {
+        container[i].style.display = "none";
+    }
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+	
+	if(cityName==2){
+		var formData = new FormData();
+		formData.append('read_num', $("#readnum").attr("name"))
+		$(".loading").css("display","flex");
+		$.ajax({
+				url:"/wordcloud/",
+				type:"POST",
+				data:formData,
+				processData:false,
+				contentType:false,
+				success: function (data) {
+					$("#cloud_box").remove();
+					$("#2").append(data);
+					$(".loading").css("display","none");
+				},
+				error:function(data,type, err){
+				 alert("词云生成失败！")
+				 $(".loading").css("display","none");
+			}
+		})	
+	}
+	
+}
+
+function changeCloud(evt){
+	var word_list = document.getElementsByClassName("word_num");
+	var num_list = [];
+	for(var i = 0; i <  word_list.length; i++ ){
+		num_list.push(word_list[i].value);
+	}
+	$(".loading").css("display","flex");
+	var formData = new FormData();
+	formData.append('num_list', num_list)
+	formData.append('shape_type', $(".shape_drop").attr("shapeid"))
+	$.ajax({
+			url:"/changeCloud/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				$("#cloud_box").remove();
+				$("#2").append(data);
+				$(".loading").css("display","none");
+			},
+			error:function(data,type, err){
+			 alert("词云生成失败！")
+			 $(".loading").css("display","none");
+		}
+	})
+
+}
+
+function saveCloud(evt){
+	var word_list = document.getElementsByClassName("word_num");
+	var num_list = [];
+	for(var i = 0; i <  word_list.length; i++ ){
+		num_list.push(word_list[i].value);
+	}
+	$(".loading").css("display","flex");
+	var formData = new FormData();
+	formData.append('shape_type', $(".shape_drop").attr("shapeid"))
+	formData.append('num_list', num_list)
+	formData.append('cloudMode', 2)
+	$.ajax({
+			url:"/changeCloud/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				$("#cloud_box").remove();
+				$("#2").append(data);	
+				$(".loading").css("display","none");
+			},
+			error:function(data,type, err){
+			 alert("词云保存失败！")
+			 $(".loading").css("display","none");
+		}
+	})
+
+
+}
+
+function recoverCloud(evt){
+	$(".loading").css("display","flex");
+	$.ajax({
+			url:"/recoverCloud/",
+			type:"POST",
+			data:{},
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				$("#cloud_box").remove();
+				$("#2").append(data);
+				$(".loading").css("display","none");
+			},
+			error:function(data,type, err){
+			 alert("词云还原失败！")
+			 $(".loading").css("display","none");
+		}
+	})
+
+}
+function historyCloud(evt){
+	var formData = new FormData();
+	formData.append('cloudtime', $("#timeSelect").val())
+	$.ajax({
+			url:"/viewcloud/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				$(".cloud_img").remove();
+				$(".cloud_content").append(data);
+			},
+			error:function(data,type, err){
+			 alert("词云查询失败！")
+		}
+	})	
+}
+
+lay('#version').html('-v'+ laydate.v);
+
+//执行一个laydate实例
+laydate.render({
+  elem: '#timeSelect' //指定元素
+});
+</script>
+
+</head>
+<body>
+<div class="topnav">
+<div class="column side">
+<a href="/index/"  class="logo">
+<img src="/static/login/image/KJlogo.png">
+</a>
+</div>
+<div class="column middle">
+<form class="form-search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+{% csrf_token %}
+  <input type="text" name="q" placeholder="搜索.." class="input-medium search-query" autocomplete="off">
+  <button type="submit" class="btn btn-primary" style="vertical-align:middle;margin-left:10px;">搜索</button>
+</form>
+</div>
+<ul class="user_info" style="list-style:none;">
+{% if not request.session.is_login %}
+<li><a href="/register/" class="register" style="float: right;">注册</a></li>
+<li><a href="/login/" class="login" style="float: right;">登录</a></li>
+{% else%}
+
+    <li class="userdown" style="position:absolute;right:40px;">
+  <a href="#" class="login" style="width:120px;padding:5px;"><img src="/static/login/avatar/{{request.session.user_name}}.jpg " onerror="this.src='/static/login/image/original.jpg'" id="timg" name="{{request.session.user_name}}"></a>  
+    <ul class="dropdown-user" style="list-style:none;  padding-left:0px; left:0;">
+      <li><a href="/home/" class="btn btn-link"><img src="/static/login/image/user.png">个人中心</a></li>
+      <li><a href="/settings/" class="btn btn-link"><img src="/static/login/image/setting.png">设置</a></li>
+	  <li><a href="/faqs/" class="btn btn-link"><img src="/static/login/image/help.png">帮助</a></li>
+	  <li><a href="/logout/" class="btn btn-link"><img src="/static/login/image/exit.png">退出登录</a></li>
+	</ul>
+	</li>
+</ul>
+{% endif %}
+</div>
+
+
+<div class="container">
+<div class="main_left">
+<div class="maintop">
+<a class="avator" href="#" ><img src="/static/login/avatar/{{request.session.user_name}}.jpg " onerror="this.src='/static/login/image/original.jpg'"></a>
+<div class="title"><a>{{nickname}}</a></div>
+<div class="info">
+<ul>
+<li><div class="meta-block"><p id="readnum" name="{{user_info.read}}">{{user_info.read}}</p><div>阅读</div></div></li>
+<li><div class="meta-block"><p>{{user_info.active}}</p><div>活跃</div></div></li>
+</ul>
+</div>
+</div>
+<div class="box">
+<ul class="menu">
+<li class="tablinks active" onclick="openTab(event, '1')"><a href="#"><img src="/static/login/image/foot1.png">足迹</a></li>
+<li class="tablinks" onclick="openTab(event, '2')" id="cloud"><a href="#"><img src="/static/login/image/cloud0.png">词云</a></li>
+</ul>
+</div>
+<div class="list-container" style="display: block;" id="1">
+<ul class="art_list">
+{% for txtline in news %}
+<li>
+<div class="content">
+<div class="author">
+<a class="suser_img"><img src="/static/login/avatar/{{request.session.user_name}}.jpg " onerror="this.src='/static/login/image/original.jpg'"></a>
+<div class="view_info">
+<a class="nickname">{{nickname}}</a>
+<span>浏览了文章 · {{txtline.new_time}}</span>
+</div>
+</div>
+<div class="detail">
+{% if txtline.piclink %}
+<a class="wrap-img" href="{{txtline.url}}"><img  src="{{txtline.piclink}}" referrerPolicy="no-referrer"></a>
+<div class="txt-box" style="padding-right: 165px;">
+{% else %}
+<div class="txt-box">
+{% endif %}
+<a href="{{txtline.url}}"  target="_blank" class="detail_title">{{txtline.new_title}}</a>
+<p style="color:#585858;">{{txtline.new_content}}</p>
+<div class="author-name" ><a href="{{txtline.authorlink}}"  target="_blank" style="color:#C0C0C0;">{{txtline.author}}</a>
+</div>
+</div>
+</div>
+</div>
+</li>
+{% empty %}
+    <img src="/static/login/image/no_look.png" style="width: 300px;margin-left: 210px;margin-top: 70px;">
+{% endfor %}
+</ul>
+</div>
+<div class="list-container" style="display: none; position:relative;" id="2">
+<div class="loading">
+<img src="/static/login/image/loading.gif">
+</div>
+<div id="cloud_box">
+<img class="error_img" src="{{error_img}}">
+<div class="word_key">
+<div class="key_tab">
+<div>
+<button style="color:#646464;" class="cloud_time_mode active" onclick="pastNew(event, 'now_cloud')">当前词云</button><button  class="cloud_time_mode" onclick="pastNew(event, 'old_cloud')">历史词云</button>
+</div>
+</div>
+<div class="left-func" id="now_cloud">
+<div class="key_content">
+<table class="title-table">
+<tbody>
+<tr>
+<td>关键词</td>
+<td>词频</td>
+</tr>
+</tbody>
+</table>
+<div class="table-scroll">
+<table class="main-table">
+<tbody>
+{% for word,key in dicts.items %}
+<tr class="word-detail" onclick="selectword(event)">
+<td>{{word}}</td>
+<td><input type="text" class="word_num" autocomplete="off" value="{{key}}" Oninput="value=value.replace(/[^\d]/g,'')"></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+<div class="key_bottom">
+<div><button  onclick="recoverCloud(event)">还原</button><button onclick="changeCloud(event)">生成词云</button><button onclick="saveCloud(event)">保存修改</button></div>
+</div>
+</div>
+<div class="left-func" id="old_cloud" style="display: none;">
+<div class="key_content">
+<input type="text" class="demo-input" placeholder="请选择日期" id="timeSelect">
+</div>
+<div class="key_bottom">
+<div class="btn_box_old">
+<button onclick="historyCloud(event)" class="search_btn">查看词云</button>
+</div>
+</div>
+</div>
+</div>
+<div class="word_cloud">
+<div class="cloud_tab">
+<ul class="tab_func" style="list-style:none;">
+<li class="shape_drop" shapeid="1" style="top: 16px;display: inline-block;position:relative;"><div class="shapewrap"><a class="shape-show"><img src="/static/login/image/rectangle.png"></a></div><span class="down-arrow"></span>
+    <ul class="shape_func">
+      <li onclick="changeShape(event, '1')"><a><img src="/static/login/image/rectangle.png"></a></li>
+	  <li onclick="changeShape(event, '2')"><a><img src="/static/login/image/star.png"></a></li>
+	  <li onclick="changeShape(event, '3')"><a><img src="/static/login/image/circle.png"></a></li>
+	  <li onclick="changeShape(event, '4')"><a><img src="/static/login/image/triangle.png"></a></li>
+	</ul>
+</li>
+</ul>
+</div>
+<div class="cloud_content">
+<img class="cloud_img" src="{{cloud_img}}">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+body {
+  height: 100%;
+  background-image: url('../image/bg.jpg');
+  font-family: Georgia,Times New Roman,Times,Songti SC,serif;
+}
+.form-channel {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-channel{
+  margin-top:100px;
+  font-weight: 400;
+}
+.text-center {
+  margin-bottom: 50px;
+}
+.btn-group {
+  margin-bottom: 20px;
+  margin-left:30px; 
+  width: 80px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.btn-group:hover {
+    color: white;
+}
+.btn-func {
+  margin-left:200px; 
+}
+.btn-return {
+  margin-right:20px; 
+}
+form a{
+  display: inline-block;
+  margin-top:25px;
+  line-height: 10px;
+}

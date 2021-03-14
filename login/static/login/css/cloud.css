@@ -1,0 +1,45 @@
+body {
+  height: 100%;
+  background: url('../image/background.png') no-repeat;
+  background-size: cover;
+  font-family: PingFang-SC-Regular, Helvetica, "Microsoft Yahei", 微软雅黑;
+}
+
+.rec_header{
+	text-align: center;
+    z-index: 100;
+	position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    height: 150px;
+}
+
+.rec_header h1{
+	font-size: 32px;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.rec_header h2{
+	margin: 0;
+    font-size: 18px;
+    color: #999;
+}
+
+.rec_header .rec_close{
+	position: absolute;
+    top: 50px;
+    right: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #999;
+    z-index: 99;
+}
+
+.rec_close a{
+	text-decoration: none;
+	color:#999;
+}
+

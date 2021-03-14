@@ -1,0 +1,355 @@
+body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+
+/* 导航条 */
+.topnav {
+  position:fixed;
+  width: 100%;
+  border:1px solid #F0F0F0;
+/*  background-color: #F0F0F0;*/
+  background-color: white;
+  z-index:10;
+  font-family:-apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+/* 导航链接 */
+.topnav a {
+  display: block;
+  color: #505050;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* 链接 - 修改颜色 */
+.user_info a:hover {
+  color: black;
+}
+.topnav form {
+  position:relative;
+  left:200px;
+}
+.topnav .logo{
+	margin-left: 50px;
+    padding: 0;
+    float: left;
+}
+
+.topnav .logo img{
+	width: 50px;
+}
+
+.column {
+  float: left;
+  padding: 6px;
+}
+/* 左右两侧宽度 */
+.column.side {
+  width: 25%;
+}
+
+/* 中间区域宽度 */
+.column.middle {
+  width: 50%;
+}
+
+/* 列后面清除浮动 */
+.topnav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form-search{
+	display: flex;
+    flex-direction: row;
+	font-family: "STSong";
+}
+
+input[type=text] {
+  width: 150px;
+  outline:none;
+  box-sizing: border-box;
+  border: 1px solid #F0F0F0;
+  border-radius: 19px;
+  font-size: 16px;
+  background-color: #F0F0F0;
+  background-image: url('../image/searchicon.png');
+  background-position: 8px 8px; 
+  background-repeat: no-repeat;
+  padding: 6px 20px 6px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+  width: 250px;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 140px;
+	height: 114px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content li:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.login {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.login img{
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+}
+.userdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-user {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-user a {
+	width:100%;
+    color: #505050;
+    padding: 12px 10px 12px 17px;
+    text-decoration: none;
+    display: block;
+	font-size: 14px;
+	text-align:left;
+}
+
+.dropdown-user a:hover {
+	background-color: #f1f1f1;
+	text-decoration:none;
+}
+
+.userdown:hover .dropdown-user {
+    display: block;
+}
+
+
+.dropdown-user li img{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+	float:left;
+	margin-top:2px;
+}
+
+.row {
+  position: relative;
+  width: 100%;
+  display:flex;
+  flex-direction:row;
+  
+}
+
+/* 右边区域宽度 */
+.hotnews {
+  position: absolute;
+  width: 400px;
+  top: -14px;
+  right: 0px;
+  height: 100%;
+  padding-left:40px;
+}
+
+/* 中间区域宽度 */
+.container {
+  height: 100%;
+  margin-left:180px;
+  width:930px;
+  margin-right:500px;
+  /*background: 	#D80000;*/
+}
+
+/* 列后面清除浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hotnews table{
+  position: relative;
+  margin-left: 20px;
+  margin-right: 30px;
+
+}
+.hotnews_box div{
+	display:none;
+}
+
+.hotnews_box div.active{
+	display:block;
+}
+
+.container .warp{
+    width: 910px;
+    height: 430px;
+    position: relative;
+    overflow: hidden;
+}
+.container .broadcast{
+    margin:15px; 
+    width: 880px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.container .broadcast ul{
+    width: 400%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+    list-style: none;
+    
+}
+.container .broadcast li{
+    left: 0;
+	width: 880px;
+	height: 400px;
+    float: left;
+    list-style: none;    
+	position:relative;
+}
+
+.container .broadcast ul a{
+	width: 100%;
+    height: 100%;
+	cursor:pointer;
+}
+
+.container .broadcast .lunbotext{
+	font-size: 22px;
+    line-height: 60px;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+}
+.container .broadcast .lunbotext p{
+	overflow: hidden;
+    padding: 0 110px 0 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    color: #fff;
+	margin-bottom:0;
+	
+}
+
+.container .broadcast .lunbotext p:hover{
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.container .broadcast img{
+    width: 100%;
+    height: 100%;
+}
+.container .broadcast ol{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+.container .broadcast ol li{
+    position: relative;
+   float: left;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background-color: rgba(155, 155, 155,.45);
+   color: #fff;
+   text-align: center;
+   margin-right: 15px;
+   cursor: pointer;
+   line-height: 20px;
+}
+.container .broadcast ol li.first-li{
+background-color:rgba(248, 248, 248, 0.45)
+}
+
+.container .arrow{
+	cursor:pointer; 
+	display:none; 
+	line-height:39px; 
+	text-align:center; 
+	font-size:36px; 
+	font-weight:bold; 
+	width:40px; 
+	height:40px;  
+	position:absolute; 
+	z-index:2; 
+	top:200px;
+	background-color: RGBA(0,0,0,.3); 
+	color:#fff;
+	text-decoration:none;
+}
+
+.container .arrow:hover{background-color:RGBA(0,0,0,.7);}
+
+.container #broadcast:hover .arrow{display:block;}
+
+.container #prev{left:20px;}
+
+.container #next{right:20px;}
+
+.load-more{
+	width: 75%;
+    border-radius: 20px;
+    background-color: #b8b8b8;
+	height: 40px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+	color: #fff!important;
+    display: block;
+	cursor:pointer;
+}
+
+.load-more:hover{
+	background-color: #a5a5a5;
+	cursor:pointer;
+}
+
+.wrap-img{
+	width: 150px;
+	margin-top: 5px;
+    height: 100px;
+	position: absolute;
+	right:10px;
+}
+.wrap-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+}

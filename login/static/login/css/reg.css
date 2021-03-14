@@ -1,0 +1,146 @@
+body {
+	height: 100%;
+	background-image: url('../image/reg_bg_min.jpg');
+	font-family: PingFang-SC-Regular, Helvetica, "Microsoft Yahei", 微软雅黑;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo{
+	position: fixed;
+    left: 70px;
+    top: 60px;
+    width: 80px;
+}
+
+
+.logo img{
+	width: 100%;
+}
+
+.ex_text{
+	position: fixed;
+    left: 195px;
+    top: 314px;
+	color: #fff;
+}
+
+.ex_text h3{
+    font-size: 54px;
+    letter-spacing: 0;
+    font-weight: 700;
+}
+
+.ex_text p{
+	font-size: 32px;
+    letter-spacing: 3.81px;
+    font-weight: 300;
+}
+
+.reg_form{
+	height: 518px;
+    margin-top: -259px;
+	background: rgba(255,255,255,.9);
+	position: absolute;
+    right: 139px;
+    top: 50%;
+	width: 480px;
+	border-radius: 12px;
+    overflow: hidden;
+}
+
+.guide{
+	margin: 30px 0 0 39px;
+}
+
+.guide h3{
+	font-size: 36px;
+    color: #000;
+    padding-bottom: 4px;
+	font-weight: bold;
+}
+
+.guide div{
+	font-size: 14px;
+    color: #9B9B9B;
+}
+
+.guide a{
+	color: #3194d0;
+}
+
+.reg_content{
+	padding-top: 40px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+  display:flex;
+  flex-direction:row;
+}
+
+.form-group label{
+	font-size: 14px;
+    color: #333;
+    letter-spacing: 0;
+    text-align: right;
+    width: 82px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 15px;
+    font-weight: 200;
+}
+
+.form-group input{
+	padding: 11px 10px;
+    max-height: 40px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 321px;
+    color: #000;
+}
+
+.form-group img{
+	padding-left: 18px;
+    height: 35px;
+}
+
+.form-group input::-webkit-input-placeholder{
+	color:rgba(0,0,0,.2)
+}
+.form-register .sub_div{
+	padding-top:15px;
+	padding-left:41px;
+}
+
+.form-register .button-submit{
+	background: #2E58FF;
+    box-shadow: 0 8px 20px 0 #8f9fff;
+	border-radius: 25px;
+    width: 399px;
+	float: left;
+	display: block;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+	border: 0;
+    color: #fff;
+	text-align: center;
+}
+ul li{
+	list-style: none;
+}
+.form-register .warning{
+	font-size: 12px;
+    color: #F55;
+    background: 0 0;
+    padding-left: 0;
+    margin-top: 35px;
+    position: absolute;
+    left: 97px;
+
+}

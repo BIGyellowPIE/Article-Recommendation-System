@@ -1,0 +1,339 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/settings.css' %}" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/iconfont.css' %}">
+    <title>设置 - 看荐</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+	<style type="text/css">
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+	width: 100px;
+	height: 52px;
+	padding: 0;
+}
+
+div.tab a {
+color:black;
+display:block;
+width:100%;
+height:100%;
+margin-top: 13px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+</style>
+<script type="text/javascript">
+function openTab(evt, cityName) {
+    var i, tablinks, container;
+    tablinks = document.getElementsByClassName("tablinks");
+    container = document.getElementsByClassName(" list-container");
+    for (i = 0; i <  container.length; i++) {
+        container[i].style.display = "none";
+    }
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function show(file){	
+	var reader = new FileReader();	// 实例化一个FileReader对象，用于读取文件
+	var img = document.getElementById('img'); 	// 获取要显示图片的标签
+	
+	//读取File对象的数据
+	reader.onload = function(evt){
+		img.src = evt.target.result;
+	}
+	reader.readAsDataURL(file.files[0]);
+}
+function baseinfo(evt){
+	var formData = new FormData();
+	formData.append('nickname', $('#nickname').val())
+	formData.append('email', $('#email').val())
+	formData.append('pic', document.getElementById("postimg").files[0])
+	formData.append('user_name', $("#timg").attr("name"))
+	$.ajax({
+			url:"/setbase/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				alert(data)
+				window.location.reload()
+			}
+	})
+}
+function detailinfo(evt){
+	var formData = new FormData();
+	formData.append('truename', $('#truename').val())
+	formData.append('sex', $('input:radio[name="sex"]:checked').val())
+	formData.append('age', $('#age').val())
+	formData.append('company', $('#company').val())
+	formData.append('brief', $('#brief').val())
+	formData.append('user_name', $("#timg").attr("name"))
+	$.ajax({
+			url:"/setdetail/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				alert(data)
+			}
+	})
+}
+function setkey(evt){
+	var formData = new FormData();
+	formData.append('newkey0', $('#newkey0').val())
+	formData.append('newkey1', $('#newkey1').val())
+	formData.append('oldkey', $('#oldkey').val())
+	formData.append('user_name', $("#timg").attr("name"))
+	$.ajax({
+			url:"/setkey/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				alert(data)
+			}
+	})
+}
+
+function dluser(evt){
+	var formData = new FormData();
+	formData.append('user_name', $("#timg").attr("name"))
+	$.ajax({
+			url:"/delete/",
+			type:"POST",
+			data:formData,
+			processData:false,
+			contentType:false,
+			success: function (data) {
+				alert(data)
+				window.location.reload()
+			}
+	})
+}
+</script>
+</head>
+<body>
+<div class="topnav">
+<div class="column side">
+<a href="/index/"  class="logo">
+<img src="/static/login/image/KJlogo.png">
+</a>
+</div>
+<div class="column middle">
+<form class="form-search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+{% csrf_token %}
+  <input type="text" name="q" placeholder="搜索.." class="input-medium search-query" autocomplete="off">
+  <button type="submit" class="btn btn-primary" style="vertical-align:middle;margin-left:10px;">搜索</button>
+</form>
+</div>
+<ul class="user_info" style="list-style:none;">
+{% if not request.session.is_login %}
+<li><a href="/register/" class="register" style="float: right;">注册</a></li>
+<li><a href="/login/" class="login" style="float: right;">登录</a></li>
+{% else%}
+
+    <li class="userdown" style="position:absolute;right:40px;">
+  <a href="#" class="login" style="width:120px;padding:5px;"><img src="/static/login/avatar/{{request.session.user_name}}.jpg " onerror="this.src='/static/login/image/original.jpg'" id="timg" name="{{request.session.user_name}}"></a>  
+    <ul class="dropdown-user" style="list-style:none;  padding-left:0px; left:0;">
+      <li><a href="/home/" class="btn btn-link"><img src="/static/login/image/user.png">个人中心</a></li>
+      <li><a href="/settings/" class="btn btn-link"><img src="/static/login/image/setting.png">设置</a></li>
+	  <li><a href="/faqs/" class="btn btn-link"><img src="/static/login/image/help.png">帮助</a></li>
+	  <li><a href="/logout/" class="btn btn-link"><img src="/static/login/image/exit.png">退出登录</a></li>
+	</ul>
+	</li>
+</ul>
+{% endif %}
+</div>
+<div class="container">
+<div class="set-menu">
+<ul class="menu">
+<li class="tablinks active" onclick="openTab(event, '1')"><a href="#"><img src="/static/login/image/set1.png">基础设置</a></li>
+<li class="tablinks" onclick="openTab(event, '2')"><a href="#"><img src="/static/login/image/set2.png">个人资料</a></li>
+<li class="tablinks" onclick="openTab(event, '3')"><a href="#"><img src="/static/login/image/set3.png">修改密码</a></li>
+<li class="tablinks" onclick="openTab(event, '4')"><a href="#"><img src="/static/login/image/set4.png">账号管理</a></li>
+</ul>
+</div>
+<div class="content">
+
+<div class="list-container" style="display: block;" id="1">
+<form method="post" enctype="multipart/form-data">
+<div class="content-row">
+<div class="top-line grid-left">
+<div class="avatar"><img src="/static/login/avatar/{{request.session.user_name}}.jpg" onerror="this.src='/static/login/image/original.jpg'"  id="img" ></div>
+</div>
+<div class="top-line grid-right cg-avatar">
+<a class="btn-hollow"><input type="file" class="hide" onchange="show(this)" id="postimg">更改头像</a>
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+昵称
+</div>
+<div class="g-right">
+<input type="text" value="{{user_info.nickname}}" id="nickname">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+电子邮件
+</div>
+<div class="g-right">
+<input type="text" value="{{user_info.email}}" id="email">
+</div>
+</div>
+<input type="button" class="btn-post" value="保存" onclick="baseinfo(event)">
+</form>
+</div>
+
+<div class="list-container" style="display: none;" id="2">
+<div class="content-row">
+<div class="grid-left">
+姓名
+</div>
+<div class="g-right">
+<input type="text" value="{{user_info.truename}}" id="truename">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+性别
+</div>
+<div class="g-right">
+<input name="sex" type="radio" value="男" {% if user_info.sex == '男' %} checked {% endif %}><span>男</span>
+<input name="sex" type="radio" value="女" {% if user_info.sex == '女' %} checked {% endif %}><span>女</span>
+<input name="sex" type="radio" value="保密" {% if user_info.sex == '保密' %} checked {% endif %}><span>保密</span>
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+年龄
+</div>
+<div class="g-right">
+<input type="text" value="{{user_info.age}}" id="age">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+公司/学校
+</div>
+<div class="g-right">
+<input type="text" value="{{user_info.company}}" id="company">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+个人简介
+</div>
+<div class="g-right">
+<textarea  id="brief">
+{{user_info.brief}}
+</textarea>
+</div>
+</div>
+<input type="button" class="btn-post" value="保存" onclick="detailinfo(event)">
+</div>
+
+<div class="list-container" style="display: none;" id="3">
+<form>
+<div class="content-row">
+<div class="grid-left">
+输入旧密码
+</div>
+<div class="g-right">
+<input type="password" autocomplete="off" id="oldkey">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+输入新密码
+</div>
+<div class="g-right">
+<input type="password" autocomplete="off" id="newkey0">
+</div>
+</div>
+<div class="content-row">
+<div class="grid-left">
+确认新密码
+</div>
+<div class="g-right">
+<input type="password" autocomplete="off" id="newkey1">
+</div>
+</div>
+<input type="button" class="btn-post" value="保存" onclick="setkey(event)">
+<form>
+</div>
+
+<div class="list-container" style="display: none;" id="4">
+<h4>喜好修改</h4>
+<ul>
+<li>注册之初，看荐展示了许多可供选择的热门关键词。在此你可以对最初选择的偏好关键词进行修改与调整。</li>
+</ul>
+<a href="/channel/">
+<input type="button"  class="btn-modify" value="进入修改">
+</a>
+<h4>永久删除账号</h4>
+<ul>
+<li>如果你不小心创建出了多余的帐号，或在绑定帐号的时候提示帐号被占用，你可以在<a href="/faqs/">看荐热门问题</a>中获得相关帮助。</li>
+<li>如果你对看荐上的某些内容、功能或社区规则不满意，你可以在<a href="/help/">帮助与反馈页</a>向我们提出。</li>
+<li>删除帐号前，请确保已经没有任何文章内容或词云记录需要保存。</li>
+<li>删除帐号是不可逆的操作，删除后将无法恢复。</li>
+</ul>
+<input type="button" class="btn-delete" value="删除账号" onclick="dluser(event)">
+</div>
+</div>
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

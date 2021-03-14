@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/reg.css' %}" rel="stylesheet"/>
+    <title>注册看荐账号</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+  </head>
+  <body>
+<div class="container">
+<div class="content">
+<div class="logo">
+<img src="/static/login/image/f_KJlogo.png">
+</div>
+<div class="ex_text">
+<h3>看荐</h3>
+<p>荐你所想，看你所爱</p>
+</div>
+<div class="reg_form">
+<div class="guide">
+<h3>欢迎注册</h3>
+<div>已有账号？<a href="/login/">登录</a></div>
+</div>
+<div class="reg_content">
+<form autocomplete="off" class="form-register" action="/register/" method="post">
+
+{% csrf_token %}
+
+<div class="form-group">
+{{ register_form.username.label_tag }}
+{{ register_form.username}}
+{% if message1 %}
+<div class="warning">{{ message1 }}</div>
+{% endif %}
+</div>
+<div class="form-group">
+{{ register_form.password1.label_tag }}
+{{ register_form.password1 }}
+</div>
+<div class="form-group">
+{{ register_form.password2.label_tag }}
+{{ register_form.password2 }}
+{% if message2 %}
+<div class="warning">{{ message2 }}</div>
+{% endif %}
+</div>
+<div class="form-group">
+{{ register_form.email.label_tag }}
+{{ register_form.email }}
+{% if message3 %}
+<div class="warning">{{ message3 }}</div>
+{% endif %}
+</div>
+<div class="form-group">
+{{ register_form.captcha.label_tag }}
+{{ register_form.captcha }}
+{% if register_form.captcha.errors %}
+<div class="warning">验证码错误</div>
+{% endif %}
+</div>
+
+<div class="sub_div">
+<input type="submit" value="注册" class="button-submit">
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>  
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,106 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/index.css' %}" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/iconfont.css' %}">
+    <title>首页</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+<script type="text/javascript">
+function Ssss(id) {
+	var newid = id;    //获取要传到后台的数据
+	$.ajax({
+		type: "GET",
+		url: "/record/",    //后台处理函数的url
+		data: {'newid':newid},
+		success: function (data) {  //获取后台处理后传过来的result 
+		},
+	});
+}
+</script>	
+</head>
+<body>
+<div class="topnav">
+<div class="column side">
+<a href="/index/"  class="logo">
+<img src="/static/login/image/KJlogo.png">
+</a>
+</div>
+<div class="column middle">
+<form class="form-search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+{% csrf_token %}
+  <input type="text" name="q" placeholder="搜索.." class="input-medium search-query" autocomplete="off">
+  <button type="submit" class="btn btn-primary" style="vertical-align:middle;margin-left:10px;">搜索</button>
+</form>
+</div>
+<ul class="user_info" style="list-style:none;">
+{% if not request.session.is_login %}
+<li><a href="/register/" class="register" style="float: right;">注册</a></li>
+<li><a href="/login/" class="login" style="float: right;">登录</a></li>
+{% else%}
+
+    <li class="userdown" style="position:absolute;right:40px;">
+  <a href="#" class="login" style="width:120px;padding:5px;"><img src="/static/login/avatar/{{request.session.user_name}}.jpg " onerror="this.src='/static/login/image/original.jpg'" id="timg" name="{{request.session.user_name}}"></a>  
+    <ul class="dropdown-user" style="list-style:none;  padding-left:0px; left:0;">
+      <li><a href="/home/" class="btn btn-link"><img src="/static/login/image/user.png">个人中心</a></li>
+      <li><a href="/settings/" class="btn btn-link"><img src="/static/login/image/setting.png">设置</a></li>
+	  <li><a href="/faqs/" class="btn btn-link"><img src="/static/login/image/help.png">帮助</a></li>
+	  <li><a href="/logout/" class="btn btn-link"><img src="/static/login/image/exit.png">退出登录</a></li>
+	</ul>
+	</li>
+</ul>
+{% endif %}
+</div>
+</br></br>
+<div class="row">
+
+<div class="container" style="margin-left:280px;">
+<div  class="tabcontent" style="display: block;">
+<ul style="list-style-type:none;" class="text_container">
+</br>
+{% if query %}
+{% for result in page.object_list %}
+<li style=" border-bottom:1px #E0E0E0 solid; position:relative;">
+{% if result.object.piclink %}
+<a class="wrap-img" href="{{result.object.url}}"><img  src="{{result.object.piclink}}" referrerPolicy="no-referrer"></a>
+<div class="txt-box" onclick="Ssss('{{result.object.new_id}}')" style="padding-right: 165px;">
+{% else %}
+<div class="txt-box" onclick="Ssss('{{result.object.new_id}}')">
+{% endif %}
+<h4><a href="{{result.object.url}}"  target="_blank" style="color:	#303030;">{{result.object.new_title}}</a></h4>
+<p style="color:#585858;">{{result.object.new_content}}</p>
+<div class="author-name" ><a href="{{result.object.authorlink}}"  target="_blank" style="color:#C0C0C0;">{{result.object.author}}</a>
+</div>
+</br>
+</div>
+</li>
+</br>
+{% empty %}
+<p>换个搜索词试试吧！</p>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/login.css' %}" rel="stylesheet"/>
+    <title>登录-看荐</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+  </head>
+  <body>
+    <div class="container">
+		<div class="title">
+		<img src="/static/login/image/KJlogo.png">
+		</div>
+		<div class="col">
+			<form class="form-login" action="/login/" method="post">
+
+			  {% csrf_token %}
+
+			  <div class="form-group">
+				{{ login_form.username}}
+				{% if message1 %}
+				<div class="warning">{{ message1 }}</div>
+				{% endif %}
+			  </div>
+			  <div class="form-group">
+				{{ login_form.password }}
+				{% if message2 %}
+				<div class="warning">{{ message2 }}</div>
+				{% endif %}
+			  </div>
+
+			  <div class="form-group test">
+				{{ login_form.captcha }}
+				{% if login_form.captcha.errors %}
+				<div class="warning">验证码错误</div>
+				{% endif %}
+			  </div>
+			  <div class="sub_div">
+				<input type="submit" value="登录" class="button-submit">
+			 </div>
+			  <div class="other">
+				  <a href="#" class="revise " target="_blank">忘记密码</a>
+				  <a href="/register/" class="reg " target="_blank">立即注册</a>
+			  </div>
+			</form>
+		</div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

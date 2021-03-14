@@ -1,0 +1,174 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/prefer.css' %}" rel="stylesheet"/>
+    <title>专题设置</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+  </head>
+  <body>
+    <div class="container">
+		<div class="rec_header">
+			<h1 class="title">请选择你喜欢的专题</h1>
+			<h2 class="subtitle">看荐会为你定制更精准的信息流</h2>
+			<div class="rec_close"><a href="/index/">以后再说</a></div>
+		</div>
+		<div class="col">
+			<div class="selector">
+			<form class="form-prefer" action="/channel/" method="post">
+				{% csrf_token %}
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/财经.jpg">
+					</div>
+					<input type='checkbox' id='1' name='check_box_list' value="财经">
+					<label for='1'>财经</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/计算机.jpg">
+					</div>
+					<input type='checkbox' id='2' name='check_box_list'  value="计算机">
+					<label for='2'>计算机</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/教育.jpg">
+					</div>
+					<input type='checkbox' id='6' name='check_box_list'  value="教育">
+					<label for='6'>教育</label>
+				</div>	
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/军事.jpg">
+					</div>
+					<input type='checkbox' id='7' name='check_box_list' value="军事">
+					<label for='7'>军事</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/科技.jpg">
+					</div>
+					<input type='checkbox' id='8' name='check_box_list'  value="科技">
+					<label for='8'>科技</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/历史.jpg">
+					</div>
+					<input type='checkbox' id='9' name='check_box_list'  value="历史">
+					<label for='9'>历史</label>
+				</div>	
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/房产.jpg">
+					</div>
+					<input type='checkbox' id='3' name='check_box_list'  value="房产">
+					<label for='3'>房产</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/股票.jpg">
+					</div>
+					<input type='checkbox' id='4' name='check_box_list' value="股票">
+					<label for='4'>股票</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/家居.jpg">
+					</div>
+					<input type='checkbox' id='5' name='check_box_list'  value="家居">
+					<label for='5'>家居</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/社会.jpg">
+					</div>
+					<input type='checkbox' id='10' name='check_box_list' value="社会">
+					<label for='10'>社会</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/时尚.jpg">
+					</div>
+					<input type='checkbox' id='11' name='check_box_list'  value="时尚">
+					<label for='11'>时尚</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/体育.jpg">
+					</div>
+					<input type='checkbox' id='12' name='check_box_list'  value="体育">
+					<label for='12'>体育</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/文化.jpg">
+					</div>
+					<input type='checkbox' id='13' name='check_box_list' value="文化">
+					<label for='13'>文化</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/星座.jpg">
+					</div>
+					<input type='checkbox' id='14' name='check_box_list'  value="星座">
+					<label for='14'>星座</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/艺术.jpg">
+					</div>
+					<input type='checkbox' id='15' name='check_box_list'  value="艺术">
+					<label for='15'>艺术</label>
+				</div>	
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/游戏.jpg">
+					</div>
+					<input type='checkbox' id='16' name='check_box_list' value="游戏">
+					<label for='16'>游戏</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/娱乐.jpg">
+					</div>
+					<input type='checkbox' id='17' name='check_box_list'  value="娱乐">
+					<label for='17'>娱乐</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/政治.jpg">
+					</div>
+					<input type='checkbox' id='18' name='check_box_list'  value="政治">
+					<label for='18'>政治</label>
+				</div>	
+		<div class="sub_div">
+			<input type="submit" value="完成" class="button-submit">
+		</div>					
+			</form>			
+			</div>		
+        </div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

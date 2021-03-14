@@ -1,0 +1,45 @@
+<div class="news-box">
+<ul style="list-style-type:none;">
+</br>
+{% if query %}
+{% for result in page.object_list %}
+<li style=" border-bottom:1px #E0E0E0 solid; ">
+{% if result.object.piclink %}
+<a class="img-box" href={{result.object.link}}  target="_blank" style="float :right;0`width: 160px; height: 160px;display:flex;">
+<img src={{result.object.piclink}} style="width: 160px; height: auto;align-self:center;" referrerPolicy="no-referrer";/>
+</a>
+<div class="txt-box" style="margin: 0 200px 0 0px;">
+{% else %}
+<div class="txt-box">
+{% endif %}
+<h4><a href={{result.object.link}}  target="_blank" style="color:	#303030;">{{result.object.title}}</a></h4>
+<p style="color:#585858;">{{result.object.profile}}</p>
+<div class="author-name" ><a href={{result.object.authorlink}}  target="_blank" style="color:#C0C0C0;">{{result.object.author}}</a>
+</div>
+</br>
+</div>
+</li>
+</br>
+</ul>
+</div>
+{% empty %}
+<p>换个搜索词试试吧！</p>
+{% endfor %}
+{% endif %}
+</div>
+
+{% block title %}文章列表{% endblock %}
+
+{% block content %}
+
+        {% if query %}
+            {% for result in page.object_list %}
+                <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                </p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}

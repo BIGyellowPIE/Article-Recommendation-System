@@ -1,0 +1,60 @@
+body{
+    font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+
+.page-logo{
+	position: absolute;
+    left: 20px;
+    top: 14px;
+    width: 55px;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 250px;
+    padding-right: 15px;
+}
+
+
+.container a{
+	color: #3194d0;
+	cursor:pointer;
+}
+
+.container .row {
+    padding-top: 100px;
+    margin-left: -15px;
+    margin-right: -15px;
+	display:block;
+}
+
+.container h3{
+	margin: 10px 0 20px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #333;
+}
+
+.container h5{
+    margin: 30px 0 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+}
+
+.container h6{
+	margin: 0;
+    padding: 10px 0 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #333;
+    clear: both;
+}
+.container hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}

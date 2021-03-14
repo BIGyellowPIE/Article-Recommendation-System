@@ -1,0 +1,255 @@
+body{
+    font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+body {
+  height: 100%;
+  margin: 0;
+}
+/* 导航条 */
+.topnav {
+  position:fixed;
+  width: 100%;
+  border:1px solid #F0F0F0;
+/*  background-color: #F0F0F0;*/
+  background-color: white;
+  z-index:10;
+  font-family:-apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+/* 导航链接 */
+.topnav a {
+  display: block;
+  color: #505050;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* 链接 - 修改颜色 */
+.user_info a:hover {
+  color: black;
+}
+.topnav form {
+  position:relative;
+  left:200px;
+}
+.topnav .logo{
+	margin-left: 50px;
+    padding: 0;
+    float: left;
+}
+
+.topnav .logo img{
+	width: 50px;
+}
+
+.column {
+  float: left;
+  padding: 6px;
+}
+/* 左右两侧宽度 */
+.column.side {
+  width: 25%;
+}
+
+/* 中间区域宽度 */
+.column.middle {
+  width: 50%;
+}
+
+/* 列后面清除浮动 */
+.topnav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form-search{
+	display: flex;
+    flex-direction: row;
+	font-family: "STSong";
+}
+
+input[type=text] {
+  width: 150px;
+  outline:none;
+  box-sizing: border-box;
+  border: 1px solid #F0F0F0;
+  border-radius: 19px;
+  font-size: 16px;
+  background-color: #F0F0F0;
+  background-image: url('../image/searchicon.png');
+  background-position: 8px 8px; 
+  background-repeat: no-repeat;
+  padding: 6px 20px 6px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+  width: 250px;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 140px;
+	height: 114px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content li:hover {background-color: #f1f1f1}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.login {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.login img{
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+}
+.userdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-user {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-user a {
+	width:100%;
+    color: #505050;
+    padding: 12px 10px 12px 17px;
+    text-decoration: none;
+    display: block;
+	font-size: 14px;
+	text-align:left;
+}
+
+.dropdown-user a:hover {
+	background-color: #f1f1f1;
+	text-decoration:none;
+}
+
+.userdown:hover .dropdown-user {
+    display: block;
+}
+
+
+.dropdown-user li img{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+	float:left;
+	margin-top:2px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  display:flex;
+  flex-direction:row;
+  
+}
+
+/* 列后面清除浮动 */
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* 右边区域宽度 */
+.container .colright {
+	position:relative;
+	padding-left:75px;
+	
+	/*background: 	#D80000;*/
+	
+}
+
+/* 中间区域宽度 */
+.container .colmain {
+	margin-left:100px;
+	width:58%;
+  /*background: 	#D80000;*/
+}
+.container .colmain .category-title{
+	border-left-style:solid;
+	border-left-color:#ea6f5a;
+	border-left-width:5px;
+	padding-left: 10px;
+	font-size:20px;
+}
+
+.container .colmain .questions{
+	border-radius:6px;
+	margin-bottom:30px;
+	padding:10px 28px;
+	margin-top:20px;
+	border:1px solid #d5d5d5;
+}
+
+.container .colmain .questions .qtitle{
+	display: block;
+    padding: 12px 0;
+    font-size: 15px;
+    color: #3194d0;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.container .colmain .questions .qtitle:last-child {
+    border-bottom: none;
+}
+
+.container .colright .go-to-feedback .text{
+	display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.container .colright .go-to-feedback img{
+	width:60px;
+	vertical-align: middle;
+}
+
+.container .colright .go-to-feedback .text a{
+	display: block;
+	margin-top: 3px;
+    color: #3194d0;
+	font-size:14px;
+}
+
+.container .colright .go-to-contact{
+	margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.container .colright .go-to-contact a{
+	color: #3194d0;
+}

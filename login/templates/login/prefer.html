@@ -1,0 +1,107 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/prefer.css' %}" rel="stylesheet"/>
+    <title>社交媒体设置</title>
+	<link rel="icon" href="/static/login/image/kanjian.png">
+  </head>
+  <body>
+    <div class="container">
+		<div class="rec_header">
+			<h1 class="title">请选择你喜欢的社交媒体</h1>
+			<h2 class="subtitle">看荐会为你定制更精准的信息流</h2>
+			<div class="rec_close"><a href="/index/">以后再说</a></div>
+		</div>
+		<div class="col">
+			<form class="form-prefer" action="/prefer/" method="post">
+				{% csrf_token %}
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/微博.jpg">
+					</div>
+					<input type='checkbox' id='1' name='check_box_list' value="1">
+					<label for='1'>微博</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/贴吧.jpg">
+					</div>
+					<input type='checkbox' id='2' name='check_box_list'  value="2">
+					<label for='2'>贴吧</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/知乎.jpg">
+					</div>
+					<input type='checkbox' id='3' name='check_box_list'  value="3">
+					<label for='3'>知乎</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/简书.jpg">
+					</div>
+					<input type='checkbox' id='4' name='check_box_list' value="4">
+					<label for='4'>简书</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/csdn.jpg">
+					</div>
+					<input type='checkbox' id='5' name='check_box_list'  value="5">
+					<label for='5'>CSDN</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/微信.jpg">
+					</div>
+					<input type='checkbox' id='6' name='check_box_list'  value="6">
+					<label for='6'>微信</label>
+				</div>	
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/Reddit.jpg">
+					</div>
+					<input type='checkbox' id='7' name='check_box_list' value="7">
+					<label for='7'>Reddit</label>
+					
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/果壳.jpg">
+					</div>
+					<input type='checkbox' id='8' name='check_box_list'  value="8">
+					<label for='8'>果壳</label>
+				</div>
+				<div class='check'>
+					<div>
+					<img src="/static/login/image/豆瓣.jpg">
+					</div>
+					<input type='checkbox' id='9' name='check_box_list'  value="9">
+					<label for='9'>豆瓣</label>
+				</div>	
+				<div class="sub_div">
+					<input type="submit" value="下一步" class="button-submit">
+					<button class="skip" type="submit">跳过</button>
+				</div>				
+			</form>
+		</div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

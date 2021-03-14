@@ -1,0 +1,67 @@
+<div id="cloud_box">
+<img class="error_img" src="{{error_img}}">
+<div class="word_key">
+<div class="key_tab">
+<div>
+<button style="color:#646464;" class="cloud_time_mode active" onclick="pastNew(event, 'now_cloud')">当前词云</button><button  class="cloud_time_mode" onclick="pastNew(event, 'old_cloud')">历史词云</button>
+</div>
+</div>
+<div class="left-func" id="now_cloud">
+<div class="key_content">
+<table class="title-table">
+<tbody>
+<tr>
+<td>关键词</td>
+<td>词频</td>
+</tr>
+</tbody>
+</table>
+<div class="table-scroll">
+<table class="main-table">
+<tbody>
+{% for word,key in dicts.items %}
+<tr class="word-detail" onclick="selectword(event)">
+<td>{{word}}</td>
+<td><input type="text" class="word_num" autocomplete="off" value="{{key}}" Oninput="value=value.replace(/[^\d]/g,'')"></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+<div class="key_bottom">
+<div><button onclick="recoverCloud(event)">还原</button><button onclick="changeCloud(event)">生成词云</button><button onclick="saveCloud(event)">保存修改</button></div>
+</div>
+</div>
+<div class="left-func" id="old_cloud" style="display: none;">
+<div class="key_content">
+<input type="text" class="demo-input" placeholder="请选择日期" id="timeSelect">
+</div>
+<div class="key_bottom">
+<div class="btn_box_old">
+<button onclick="historyCloud(event)" class="search_btn">查看词云</button>
+</div>
+</div>
+</div>
+</div>
+<div class="word_cloud">
+<div class="cloud_tab">
+<ul class="tab_func" style="list-style:none;">
+<li class="shape_drop" shapeid="1" style="top: 16px;display: inline-block;position:relative;"><div class="shapewrap"><a class="shape-show">形状</a></div><span class="down-arrow"></span>
+    <ul class="shape_func">
+      <li onclick="changeShape(event, '1')"><a name="1"><img src="/static/login/image/rectangle.png"></a></li>
+	  <li onclick="changeShape(event, '2')"><a name="2"><img src="/static/login/image/star.png"></a></li>
+	  <li onclick="changeShape(event, '3')"><a name="3"><img src="/static/login/image/circle.png"></a></li>
+	  <li onclick="changeShape(event, '4')"><a name="4"><img src="/static/login/image/triangle.png"></a></li>
+	</ul>
+</li>
+</ul>
+</div>
+<div class="cloud_content">
+<div class="loading">
+<img src="/static/login/image/loading.gif">
+</div>
+<img class="cloud_img" src="{{cloud_img}}">
+</div>
+</div>
+</div>

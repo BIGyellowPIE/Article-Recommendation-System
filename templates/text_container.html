@@ -1,0 +1,25 @@
+<ul style="list-style-type:none;" class="text_container">
+</br>
+{% for txtline in posts.object_list %}
+<li style=" border-bottom:1px #E0E0E0 solid; position:relative;">
+{% if txtline.piclink %}
+<a class="wrap-img" href="{{txtline.url}}"><img  src="{{txtline.piclink}}"  referrerPolicy="no-referrer"></a>
+<div class="txt-box" onclick="Ssss('{{txtline.new_id}}')" style="padding-right: 165px;">
+{% else %}
+<div class="txt-box" onclick="Ssss('{{txtline.new_id}}')">
+{% endif %}
+<h4><a href="{{txtline.url}}"  target="_blank" style="color:	#303030;">{{txtline.new_title}}</a></h4>
+<p style="color:#585858;">{{txtline.new_content}}</p>
+<div class="author-name" ><a href="{{txtline.authorlink}}"  target="_blank" style="color:#C0C0C0;">{{txtline.author}}</a>
+</div>
+</br>
+</div>
+</li>
+</br>
+{% endfor %}
+</ul>
+<div class="pageli">
+{% if posts.has_next %}
+<a name="{{posts.next_page_number}}" cateid="{{cate}}" class="load-more" onclick="getnextpage()">阅读更多</a>
+{% endif %}
+</div>
