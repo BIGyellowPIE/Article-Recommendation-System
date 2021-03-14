@@ -13,9 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v5kdhn(^*1r@o+613g)y&m*^6xq-fg1r14f%@p7x-80#z(^n*m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [ '*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'Hotpoint',
     'login',
     'captcha',
+
 ]
 
 MIDDLEWARE = [
@@ -44,7 +45,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATIC_ROOT = '/data/wwwroot/WebSite/login/static/'
 ROOT_URLCONF = 'WebSite.urls'
 STATIC_URL = '/static/'
 TEMPLATES = [

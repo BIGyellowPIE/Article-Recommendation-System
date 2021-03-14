@@ -17,23 +17,23 @@ class CalHotValue:
     # 计算热度值
     def calHotValue(self):
         base_time = datetime.now()
-        sql = "select new_id, new_cate_id, comment, likes, new_time from new"
+        sql = "select aid, vd_cate_id, comment, likes, vd_time, play_num from videos"
         self.cursor.execute(sql)
         result_list = self.cursor.fetchall()
         result = list()
 
         for row in result_list:
-            diff =  base_time - datetime.strptime(str(row[4].date()), '%Y-%m-%d')
-            hot_value = row[2] * 0.4 + row[3] * 0.5 - diff.days * 0.5
-            if (row[2]*0.4 + row[3] * 0.5 < 1.0):
-                hot_value = 0.0
+            if (int(row[1])>2):
+                hot_value = row[2] * 0.02 + row[3] * 0.05 + row[5]*0.00001
+            else:
+                hot_value = row[3]*0.1
             result.append((row[0],row[1],hot_value))
         print("新闻热度值计算完毕,返回结果 ...")
         return result
 
     # 将热度值写入数据库
     def writeToMySQL(self):
-        sql = """truncate table newhot"""
+        sql = """truncate table vdhot"""
         try:
            self.cursor.execute(sql)
            self.db.commit()
@@ -41,7 +41,7 @@ class CalHotValue:
         except:
            self.db.rollback()
         for row in self.result:
-            sql_w = "insert into newhot( new_id,new_cate_id,new_hot ) values('%s', '%s' ,'%s')" % (row[0],row[1],row[2])
+            sql_w = "insert into vdhot( vd_id,vd_cate_id,vd_hot ) values('%s', '%s' ,'%s')" % (row[0],row[1],row[2])
             try:
                 self.cursor.execute(sql_w)
                 self.db.commit()
