@@ -7,13 +7,16 @@
 #### 安装教程
 1. 项目的Python版本为3.6，Django版本为2.2.1
 2. 使用pip install -r req.txt安装Python依赖包。
+3. 修改WebSite/settings.py中的SECRET_KEY为您的Django项目使用的密钥。
+4. 修改WebSite/settings.py中DATABASES的USER和PASSWORD，改为您连接MySQL所需的账号密码，并提前创建名为websitedb的数据库。
+5. 终端进入WebSite目录，分别输入python manage.py makemigrations和python manage.py migrate进行数据迁移，创建数据表。
+6. 通过websitedb.sql向websitedb数据库导入数据。
 
 #### 使用说明
 
 1. 在WebSite目录下，执行python manage.py runserver 8000。
-2. 修改WebSite/settings.py中的SECRET_KEY为您的Django项目使用的密钥。
-3. 浏览器中输入http://127.0.0.1:8000/index/, 即可在本地进行访问。
-4. 若需要在云服务器上运行项目（Centos7.3），使用Nginx与uswgi进行网站部署，那么uwsgi.ini已经设置好内容。在WebSite/tools文件夹下，还存放着文章热度值计算与用户相似度计算的py文件，可以使用crontab -e命令将对应py文件加入定时任务，实现离线计算。
+2. 浏览器中输入http://127.0.0.1:8000/index/, 即可在本地进行访问。
+3. 若需要在云服务器上运行项目（Centos7.3），使用Nginx与uswgi进行网站部署，那么uwsgi.ini已经设置好内容。在WebSite/tools文件夹下，还存放着文章热度值计算与用户相似度计算的py文件，可以使用crontab -e命令将对应py文件加入定时任务，实现离线计算。
 
 #### 贡献者
 
